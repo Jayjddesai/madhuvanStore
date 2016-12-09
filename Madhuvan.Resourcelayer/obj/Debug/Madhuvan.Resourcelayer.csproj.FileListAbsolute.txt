@@ -2,3 +2,8 @@ D:\Data\Madhuvan-MVC\Madhuvan\Madhuvan.Resourcelayer\bin\Debug\Madhuvan.Resource
 D:\Data\Madhuvan-MVC\Madhuvan\Madhuvan.Resourcelayer\bin\Debug\Madhuvan.Resourcelayer.pdb
 D:\Data\Madhuvan-MVC\Madhuvan\Madhuvan.Resourcelayer\obj\Debug\Madhuvan.Resourcelayer.dll
 D:\Data\Madhuvan-MVC\Madhuvan\Madhuvan.Resourcelayer\obj\Debug\Madhuvan.Resourcelayer.pdb
+C:\Users\Viram\Documents\GitHub\madhuvanStore\Madhuvan.Resourcelayer\bin\Debug\Madhuvan.Resourcelayer.dll
+C:\Users\Viram\Documents\GitHub\madhuvanStore\Madhuvan.Resourcelayer\bin\Debug\Madhuvan.Resourcelayer.pdb
+C:\Users\Viram\Documents\GitHub\madhuvanStore\Madhuvan.Resourcelayer\obj\Debug\Madhuvan.Resourcelayer.csprojResolveAssemblyReference.cache
+C:\Users\Viram\Documents\GitHub\madhuvanStore\Madhuvan.Resourcelayer\obj\Debug\Madhuvan.Resourcelayer.dll
+C:\Users\Viram\Documents\GitHub\madhuvanStore\Madhuvan.Resourcelayer\obj\Debug\Madhuvan.Resourcelayer.pdb
