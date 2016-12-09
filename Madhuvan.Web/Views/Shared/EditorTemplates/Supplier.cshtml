@@ -1,0 +1,144 @@
+﻿@using System.Collections
+@using Madhuvan.Commonlayer
+@using Madhuvan.Datalayer.DatabaseModel
+@using Madhuvan.Web
+@using Madhuvan.Resourcelayer
+@model Supplier
+
+<table class="manageTable">
+    <tr>
+        <td>
+            <div class="k-edit-label">@Label.Name</div>
+            <div class="k-edit-field">
+                <input id="SupplierName" class="k-textbox" type="text" value="" name="SupplierName" data-val-required="Name is required" data-val="true" data-bind="value: SupplierName" tabindex="1">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="SupplierName"></span>
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">@Label.ContactPerson</div>
+            <div class="k-edit-field">
+                <input id="ContactPersonName" class="k-textbox" type="text" value="" name="ContactPersonName" data-val-required="Contact person is required" data-val="true" data-bind="value: ContactPersonName" tabindex="7">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="ContactPersonName"></span>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">@Label.Address1</div>
+            <div class="k-edit-field">
+                <input id="Address1" class="k-textbox" type="text" value="" name="Address1" data-val-required="Address 1 is required" data-val="true" data-bind="value: Address1" tabindex="2">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Address1"></span>
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">@Label.Address2</div>
+            <div class="k-edit-field">
+                <input id="Address2" class="k-textbox" type="text" value="" name="Address2" data-val-required="Address 2 is required" data-val="true" data-bind="value: Address2" tabindex="8">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Address2"></span>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+
+        <td>
+            <div class="k-edit-label">
+                @Label.City
+            </div>
+            <div class="k-edit-field">
+
+
+
+                @(Html.Kendo().ComboBoxFor(m => m.CityId)
+                    .Name("CityId")
+                    .Placeholder(CommonHelper.PleaseSelect)
+                    .DataValueField("CityId")
+                    .DataTextField("Name")
+                    .BindTo((IEnumerable)ViewBag.CityList)
+                            .HtmlAttributes(new { @data_value_primitive = "true", @tabindex = "3" }))
+                @Html.ValidationMessageFor(x => x.CityId)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Label.State
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.StateId)
+                    .Placeholder(CommonHelper.PleaseSelect)
+                    .Filter(FilterType.Contains).Suggest(true)
+                    .BindTo((IEnumerable)ViewBag.StatesList)
+                    .DataValueField("StateId")
+                    .DataTextField("Name")
+                    .DataSource(source =>
+                        {
+                            source.Read(read =>
+                            {
+                                read.Action("BindStateByCityId", ControllerName.BindDropDown)
+                                .Data("filterState");
+                            })
+                            .ServerFiltering(true);
+                        })
+                    .AutoBind(true)
+                    .CascadeFrom("CityId")
+                    .Events(e => e.DataBound("boundstate"))
+                            .HtmlAttributes(new { @data_value_primitive = "true", @tabindex = "9" }))
+                @Html.ValidationMessageFor(x => x.StateId)
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">@Label.Zip</div>
+            <div class="k-edit-field">
+                <input id="Zip" class="k-textbox" type="text" value="" name="Zip" data-val-required="Zip is required" data-val="true" data-bind="value: Zip" tabindex="4">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Zip"></span>
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">@Label.ContactNo</div>
+            <div class="k-edit-field">
+                <input id="ContactNo" class="k-textbox" type="text" value="" name="ContactNo" data-val-required="Contact No is required" data-val="true" data-bind="value: ContactNo" tabindex="10">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="ContactNo"></span>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">@Label.Email</div>
+            <div class="k-edit-field">
+                <input id="Email" class="k-textbox" type="text" value="" name="Email" data-val-required="Email is required" data-val="true" data-bind="value: Email" tabindex="5">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Email"></span>
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">@Label.Website</div>
+            <div class="k-edit-field">
+                <input id="Website" class="k-textbox" type="text" value="" name="Website" data-val-required="Website is required" data-val="true" data-bind="value: Website" tabindex="11">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Website"></span>
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">@Label.Isactive</div>
+            <div class="k-edit-field">
+                <input id="Active" class="check-box k-valid" type="checkbox" value="true" name="Active" data-val-required="The Is active field is required." data-val="true" data-bind="checked: Active" tabindex="6">
+                <input class="k-valid" type="hidden" value="true" name="Active" data-bind="value: Active">
+                <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="Active" style="display: none;"></span>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+</table>
+<style>
+    
+.k-tooltip-validation.k-invalid-msg {
+    display: inline;
+    width: 200px;
+}
+</style>

@@ -1,0 +1,15 @@
+﻿@using Kendo.Mvc.UI
+@using Madhuvan.Commonlayer
+
+@model object
+
+@(Html.Kendo().ComboBoxFor(m=>m)
+
+                  .DataTextField("Type")
+                              .Name("TUnitTypeId")
+                  .DataValueField("UnitTypeId")
+                  .DataSource(source => source.Read(read => read.Action("BindUnitType", ControllerName.CreateInvoice)))
+              .Suggest(true)
+              .Filter(FilterType.Contains).HtmlAttributes(new { @style = "width:245px !important", @data_value_primitive = "true" })
+              .Placeholder(CommonHelper.PleaseSelect)
+)

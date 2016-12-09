@@ -1,0 +1,321 @@
+﻿@using System.Collections
+@using Madhuvan.Commonlayer
+@using Madhuvan.Datalayer.DatabaseModel
+@using Madhuvan.Web
+@using Madhuvan.Resourcelayer
+@model Employee
+
+<table class="manageTable">
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Label.EmployeeNo
+                
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.EmployeeNo, new { @class = "k-textbox", @tabindex = "1" })
+                @Html.ValidationMessageFor(x => x.EmployeeNo)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Phone)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Phone, new { @class = "k-textbox", @tabindex = "10"  })
+                @Html.ValidationMessageFor(x => x.Phone)
+            </div>
+        </td>
+
+    </tr>
+    <tr>
+        
+        <td>
+            <div class="k-edit-label">
+                @Label.FirstName
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.FirstName, new { @class = "k-textbox" , @tabindex = "2"})
+                @Html.ValidationMessageFor(x => x.FirstName)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Email)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Email, new { @class = "k-textbox" , @tabindex = "11" })
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        
+        <td>
+            <div class="k-edit-label">
+                @Label.MiddleName
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.MiddleName, new { @class = "k-textbox", @tabindex = "3" })
+                @Html.ValidationMessageFor(x => x.MiddleName)
+            </div>
+        </td>
+
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Mobile)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Mobile, new { @class = "k-textbox", @tabindex = "12" })
+                @Html.ValidationMessageFor(x => x.Mobile)
+            </div>
+        </td>
+       
+    </tr>
+
+    <tr>
+       
+        <td>
+            <div class="k-edit-label">
+                @Label.LastName
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.LastName, new { @class = "k-textbox", @tabindex = "4" })
+                @Html.ValidationMessageFor(x => x.LastName)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Label.SecondaryEmail
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.SecondaryEmail, new { @class = "k-textbox", @tabindex = "13" })
+                @Html.ValidationMessageFor(x => x.SecondaryEmail)
+            </div>
+        </td>
+       
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Label.BloodGroup
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.BloodGroup, new { @class = "k-textbox", @tabindex = "5" })
+                @Html.ValidationMessageFor(x => x.BloodGroup)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Nationality)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Nationality, new { @class = "k-textbox", @tabindex = "14" })
+                @Html.ValidationMessageFor(x => x.Nationality)
+            </div>
+        </td>
+
+    </tr>
+
+
+
+    @*<tr>
+        <td>
+            <div class="k-edit-label">
+               Branch
+            </div>
+            <div class="k-edit-field">
+
+            
+                @(Html.Kendo().ComboBoxFor(m => m.BranchId)
+                                        .Name("BranchId")
+                                        .Placeholder(CommonHelper.PleaseSelect)
+                                                .DataTextField("Name")
+                                                .DataValueField("BranchId")
+                                                .BindTo((IEnumerable)ViewBag.BranchList)
+                                                .HtmlAttributes(new { @data_value_primitive = "true" }))
+
+
+                @Html.ValidationMessageFor(x => x.BranchId)
+            </div>
+        </td>
+
+        <td>
+            <div class="k-edit-label">
+               Station
+            </div>
+            <div class="k-edit-field">
+
+          
+                @(Html.Kendo().ComboBoxFor(x => x.StationId)
+                                                .Name("StationId")
+                                                .Placeholder(CommonHelper.PleaseSelect)
+                                                .DataTextField("StationName")
+                                                .DataValueField("StationId")
+                                                .BindTo((IEnumerable)ViewBag.StationList)
+                                                .DataSource(source =>
+                                                {
+                                                    source.Read(read =>
+                                                    {
+                                                        read.Action("BindStationByBranchId", ControllerName.BindDropDown)
+                                                        .Data("filterStation");
+                                                    })
+                                                    .ServerFiltering(true);
+                                                })
+
+                        //.Events(e =>
+                        //{
+                        //    e.Select("onSelect");
+                        //})
+                        //.Enable(false)
+                                                .AutoBind(true)
+                                                .CascadeFrom("BranchId")
+                                                .HtmlAttributes(new { @data_value_primitive = "true" })
+                )
+
+
+                @Html.ValidationMessageFor(x => x.StationId)
+            </div>
+
+        </td>
+
+    </tr>*@
+
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Label.City
+            </div>
+            <div class="k-edit-field">
+
+                @(Html.Kendo().ComboBoxFor(m => m.CityId)
+                    .Name("CityId")
+                    .Placeholder(CommonHelper.PleaseSelect)
+                    .DataValueField("CityId")
+                    .DataTextField("Name")
+                   // .Filter(FilterType.Contains).Suggest(true)
+                    .BindTo((IEnumerable)ViewBag.City)
+
+                            .HtmlAttributes(new { @data_value_primitive = "true", @tabindex = "6" }))
+                @Html.ValidationMessageFor(x => x.CityId)
+            </div>
+        </td>
+       
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.DateOfBirth)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().DatePickerFor(x => x.DateOfBirth).Max(DateTime.Now).Value(DateTime.Now)
+                        .HtmlAttributes(new { @data_value_primitive = "true", @tabindex = "15" }))
+               
+                @Html.ValidationMessageFor(x => x.DateOfBirth)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+              @Label.State
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.StateId)
+                    .Placeholder(CommonHelper.PleaseSelect)
+                    .Filter(FilterType.Contains).Suggest(true)
+                    .BindTo((IEnumerable)ViewBag.State)
+                    .DataValueField("StateId")
+                    .DataTextField("Name")
+                               .DataSource(source =>
+                        {
+                            source.Read(read =>
+                            {
+                                read.Action("BindStateByCityId", ControllerName.BindDropDown)
+                                .Data("filterState");
+                            })
+                            .ServerFiltering(true);
+                        })
+                                .AutoBind(true)
+                        .CascadeFrom("CityId")
+                          .Events(e => e.DataBound("boundstate"))
+                            .HtmlAttributes(new { @data_value_primitive = "true", @tabindex = "7" }))
+
+
+
+
+
+
+                @Html.ValidationMessageFor(x => x.StateId)
+            </div>
+        </td>
+       
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Address1)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextAreaFor(x => x.Address1, new { @class = "k-textbox", @tabindex = "16"})
+                @Html.ValidationMessageFor(x => x.Address1)
+            </div>
+        </td>
+      
+    </tr>
+  
+    <tr>
+       
+
+        <td>
+            <div class="k-edit-label">
+                @Label.Country
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.CountryId)
+                    .Placeholder(CommonHelper.PleaseSelect)
+                    .Filter(FilterType.Contains).Suggest(true)
+                    .BindTo((IEnumerable)ViewBag.Country)
+                    .DataValueField("CountryId")
+                    .DataTextField("Name")
+                                   .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("BindCountryByCityId", ControllerName.BindDropDown)
+                                        .Data("filterCountry");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                                        .AutoBind(true)
+                                .CascadeFrom("CityId")
+                        //  .Events(e => e.DataBound("boundcountry"))
+                            .HtmlAttributes(new { @data_value_primitive = "true", @tabindex = "8" }))
+                @Html.ValidationMessageFor(x => x.CountryId)
+            </div>
+        </td>
+
+
+
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Address2)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextAreaFor(x => x.Address2, new { @class = "k-textbox" , @tabindex = "17"})
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.IsActive)
+            </div>
+            <div class="k-edit-field">
+                @Html.CheckBoxFor(x => x.IsActive, new { @tabindex = "9" })
+            </div>
+        </td>
+    </tr>
+</table>
+<script>
+    $('#EmployeeNo').focus();
+</script>

@@ -1,0 +1,15 @@
+﻿@using Kendo.Mvc.UI
+@using Madhuvan.Commonlayer
+
+@model object
+
+@(Html.Kendo().ComboBoxFor(m=>m)
+
+                  .DataTextField("Name")
+                          .Name("BranchId")
+                      .DataValueField("BranchId")
+                  .DataSource(source => source.Read(read => read.Action("BindBranch", ControllerName.Login)))
+              .Suggest(true)
+              .Filter(FilterType.Contains).HtmlAttributes(new { @style = "width:245px !important", @data_value_primitive = "true" })
+              .Placeholder(CommonHelper.PleaseSelect)
+)

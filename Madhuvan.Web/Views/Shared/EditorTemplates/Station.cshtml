@@ -1,0 +1,85 @@
+﻿@using System.Collections
+@using Madhuvan.Commonlayer
+@using Madhuvan.Datalayer.DatabaseModel
+@using Madhuvan.Web
+@model Station
+
+
+<table class="manageTable">
+
+    @Html.HiddenFor(x => x.StationId)
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.StationName)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.StationName, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.StationName)
+            </div>
+        </td>
+
+    </tr>
+
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Active)
+            </div>
+            <div class="k-edit-field">
+                @Html.EditorFor(x => x.Active)
+            </div>
+        </td>
+
+
+
+    </tr>
+
+
+</table>
+
+<div class="col-sm-2"></div>
+<div class="col-sm-10" style="margin-left:5%">
+    @(Html.Kendo().Grid<StationContactDetail>()
+                                       .Name("gridStationContactDetail")
+                                       .Columns(columns =>
+                                       {
+                                           columns.Command(command =>
+                                          {
+                                              command.Edit().Text(" ").UpdateText(" ").CancelText(" ");
+                                       //       command.Destroy().Text(" ");
+                                          }).HtmlAttributes(CommonSettings.ActionCenterColumnStyleWithCanEdit).HeaderHtmlAttributes(CommonSettings.ActionCenterColumnStyleWithCanEdit);
+
+                                           columns.Bound(d => d.Taluka).Title("Taluka");
+                                           columns.Bound(d => d.ContactPersonName).Title("ContactPersonName");
+                                           columns.Bound(d => d.ContactPersonNo).Title("ContactPersonNo");
+                                           columns.ForeignKey(p => p.CityId, (IEnumerable)ViewBag.CityList, "CityId", "Name").Title("City");
+
+                                           columns.ForeignKey(p => p.StateId, (IEnumerable)ViewBag.StateList, "StateId", "Name").Title("State");
+                                           columns.ForeignKey(p => p.CountryId, (IEnumerable)ViewBag.CountryList, "CountryId", "Name").Title("Country");
+
+                                   
+                                       })
+                                         .ToolBar(toolbar => toolbar.Create().Text("Add Station Contact Details"))
+                                       
+                                       .Editable(editable => editable.Mode(GridEditMode.PopUp))
+
+                                       .NoRecords()
+                                      // .AutoBind(false)
+                                       .Events(grid => grid.Edit("editStationContactDetailpopup"))
+                                      
+                                             // .Events(events => events.DataBound("dataBound"))
+                                       .DataSource(dataSource => dataSource
+                                           .Ajax()
+                                           .Model(model => model.Id(d => d.StationContactDetailId))
+                                                   .Events(events => events.Error("onError(\"grid\")").RequestEnd("onRequestEndforpopup"))
+
+                                                 
+                                                              .Update(update => update.Action("DetailsKendoPopUpUpdate", ControllerName.Station))
+                                                               .Create(update => update.Action("DetailsPopUpKendoSave", ControllerName.Station))
+                                                   .Read(read => read.Action(ActionName.DetailsKendoRead, ControllerName.Station).Data("OnStationContactData"))
+                                               
+                                                
+                                       ))
+</div>

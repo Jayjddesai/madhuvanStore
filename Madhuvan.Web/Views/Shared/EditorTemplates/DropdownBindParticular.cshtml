@@ -1,0 +1,15 @@
+﻿@using Kendo.Mvc.UI
+@using Madhuvan.Commonlayer
+
+@model object
+
+@(Html.Kendo().ComboBox()
+
+                  .DataTextField("PayGroupName")
+                  .Name("Particulars")
+                  .DataValueField("PayGroupId")
+              .DataSource(source => source.Read(read => read.Action("BindParticulars", ControllerName.DebitNote)))
+              .Suggest(true)
+              .Filter(FilterType.Contains).HtmlAttributes(new { @style = "width:245px !important", @data_value_primitive = "true" })
+              .Placeholder(CommonHelper.PleaseSelect)
+)

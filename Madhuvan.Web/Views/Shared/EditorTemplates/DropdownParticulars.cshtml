@@ -1,0 +1,15 @@
+﻿@using Kendo.Mvc.UI
+@using Madhuvan.Commonlayer
+
+@model object
+
+@(Html.Kendo().ComboBox()
+              .Name("PayHeadId")
+              .DataTextField("PayHeadName")
+              .DataValueField("PayHeadId")
+              .DataSource(source => source.Read(read => read.Action("BindParticulars", ControllerName.PurchaseVoucher)))
+              .Suggest(true)
+              .Filter(FilterType.Contains).HtmlAttributes(new { @style = "width:245px !important", @data_value_primitive = "true" })
+              .Placeholder(CommonHelper.PleaseSelect)
+              .Events(x => x.Select("OnParticularsSelect").Close("onClose"))
+)

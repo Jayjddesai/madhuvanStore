@@ -1,0 +1,57 @@
+﻿@using System.Collections
+@using Madhuvan.Commonlayer
+@using Madhuvan.Datalayer.DatabaseModel
+@model PurchaseOrderDetails
+
+
+
+<div class="k-edit-label">
+    @Html.LabelFor(x => x.ItemId)
+</div>
+<div class="k-edit-field">
+    @(Html.Kendo().ComboBoxFor(m => m.ItemId).Placeholder(CommonHelper.PleaseSelect).Filter(FilterType.Contains).Suggest(true).Enable(false)
+                .BindTo((IEnumerable)ViewBag.ItemList).DataValueField("ItemId").DataTextField("Name").HtmlAttributes(new { @data_value_primitive = "true" }))
+    @Html.ValidationMessageFor(x => x.ItemId)
+</div>
+
+<div class="k-edit-label">
+    @Html.LabelFor(x => x.Quantity)
+</div>
+<div class="k-edit-field">
+    @Html.Kendo().NumericTextBoxFor(m => m.Quantity).HtmlAttributes(new { style = "width:100%" }).Spinners(false)
+    @Html.ValidationMessageFor(x => x.Quantity)
+</div>
+
+<div class="k-edit-label">
+    @Html.LabelFor(x => x.UnitPrice)
+</div>
+<div class="k-edit-field">
+    @Html.Kendo().NumericTextBoxFor(m => m.UnitPrice).HtmlAttributes(new { style = "width:100%" }).Spinners(false)
+    @Html.ValidationMessageFor(x => x.UnitPrice)
+</div>
+
+<div class="k-edit-label">
+    @Html.LabelFor(x => x.OtherCharges)
+</div>
+<div class="k-edit-field">
+    @Html.Kendo().NumericTextBoxFor(m => m.OtherCharges).HtmlAttributes(new { style = "width:100%" }).Spinners(false)
+    @Html.ValidationMessageFor(x => x.OtherCharges)
+</div>
+
+<div class="k-edit-label">
+    @Html.LabelFor(x => x.TaxType)
+</div>
+<div class="k-edit-field">
+    @Html.Kendo().RadioButtonFor(x => x.TaxType).Value("Percentage").Label("Percentage")
+    @Html.Kendo().RadioButtonFor(x => x.TaxType).Value("Amount").Label("Amount")
+    @Html.ValidationMessageFor(x => x.TaxType)
+</div>
+
+<div class="k-edit-label">
+    @Html.LabelFor(x => x.Tax)
+</div>
+<div class="k-edit-field">
+    @Html.Kendo().NumericTextBoxFor(m => m.Tax).HtmlAttributes(new { style = "width:100%" }).Spinners(false)
+    @Html.ValidationMessageFor(x => x.Tax)
+</div>
+

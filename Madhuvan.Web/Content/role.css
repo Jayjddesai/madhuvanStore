@@ -1,0 +1,71 @@
+﻿
+
+table
+{
+    border: 0 none;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+    table.grid
+    {
+        border-left: 1px solid #bbc9d4;
+        border-right: 1px solid #bbc9d4;
+        border-bottom: 1px solid #bbc9d4;
+        border-collapse: collapse;
+        background: #FFF;
+        width: 100%;
+    }
+
+        table.grid td
+        {
+            padding: 3px;
+            border: solid 1px #bbc9d4;
+            overflow: hidden;
+            height: 26px;
+        }
+
+        table.grid th
+        {
+            padding: 6px 5px;
+            border: solid 1px #bbc9d4;
+            text-align: left;
+            background: #edf7fd url("../img/gridbg.png") bottom repeat-x;
+        }
+
+.popup_grid_inner_header
+{
+    background-color: #EDF7FD;
+    border: 1px solid #BBC9D4;
+    padding: 6px 5px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.popup_grid_header_checkbox
+{
+    background: url("../img/gridbg.png") repeat-x scroll center bottom #EDF7FD;
+    border: 1px solid #BBC9D4;
+    padding: 6px 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.popup_grid_inner_header_checkbox
+{
+    background-color: #EDF7FD;
+    border: 1px solid #BBC9D4;
+    padding: 6px 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.popup_grid_header
+{
+    background: url("../img/gridbg.png") repeat-x scroll center bottom #EDF7FD;
+    border: 1px solid #BBC9D4;
+    padding: 6px 5px;
+    text-align: left;
+    font-weight: bold;
+}

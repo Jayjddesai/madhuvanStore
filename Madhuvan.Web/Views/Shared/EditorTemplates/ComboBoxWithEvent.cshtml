@@ -1,0 +1,12 @@
+﻿@using Kendo.Mvc.UI
+@using Madhuvan.Commonlayer
+
+@model object
+
+@(
+ Html.Kendo().ComboBoxFor(m => m)
+ .Placeholder(CommonHelper.PleaseSelect)
+ .Filter(FilterType.Contains)
+        .BindTo((SelectList)ViewData[ViewData.TemplateInfo.GetFullHtmlFieldName("") + "_Data"]).HtmlAttributes(new { @data_value_primitive = "true" })
+        .Events(e => e.Change("onComboSelect"))
+)

@@ -1,0 +1,13 @@
+﻿@using Kendo.Mvc.UI
+@using Madhuvan.Commonlayer
+
+@model object
+
+@(Html.Kendo().Upload()
+             .Name("files")
+             .Async(a => a
+             .Save("SaveAttachments", "Driver")
+             .Remove("RemoveAttachments", "Driver")
+             .AutoUpload(true)
+        ) 
+)

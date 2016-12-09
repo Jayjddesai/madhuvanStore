@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Shipping Management System</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="~/img/favicon.html">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700'>
+    <link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css'>
+
+    @Styles.Render("~/css/ui")
+    @Styles.Render("~/Content/kendo/kendoCss")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/KendoJQuery")
+</head>
+<body>
+    @Html.Partial("_Header")
+
+    <!-- BEGIN Container -->
+    <div class="container" id="main-container">
+        @Html.Partial("_Menu")
+
+        <!-- BEGIN Content -->
+        <div id="main-content">
+            @RenderBody()
+            
+            <div id="idAjaxLoader" style="margin: 0px; padding: 0px; position: fixed; right: 0px; top: 0px; width: 100%; height: 100%; background-color: rgb(102, 102, 102); z-index: 30001; opacity: 0.8; display:none">
+                <p style="position: absolute; color: White; top: 50%; left: 45%;">
+                    Loading, please wait...
+                    <img src="~/Content/kendo/BlueOpal/loading-image.gif" />
+                </p>
+            </div>
+            
+            @Html.Partial("_Footer")
+        </div>
+    </div>
+
+
+    <!--page specific plugin scripts-->
+
+
+    <!--flaty scripts-->
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/UIScripts")
+    @Html.Raw(ViewBag.openPopup)
+</body>
+</html>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      
+        kendo.culture('en-IN');
+    });
+</script>
