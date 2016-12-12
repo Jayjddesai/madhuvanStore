@@ -14,5 +14,10 @@ namespace Madhuvan.Businesslayer.Controller
 
             return View();
         }
+
+        public ActionResult Create()
+        {
+            return View(); 
+        }
     }
 }
