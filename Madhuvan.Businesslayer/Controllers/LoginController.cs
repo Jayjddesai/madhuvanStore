@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Madhuvan.Businesslayer.Controller
+namespace Madhuvan.Businesslayer
 {
-    public class LoginController : System.Web.Mvc.Controller
+    public class LoginController : Controller
     {
         public ActionResult Index()
         {

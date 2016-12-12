@@ -61,9 +61,9 @@
     <Compile Include="Common\JsonHelper.cs" />
     <Compile Include="Common\SessionHelper.cs" />
     <Compile Include="Common\SettingConfig.cs" />
-    <Compile Include="Controller\AdminController.cs" />
-    <Compile Include="Controller\CategoryController.cs" />
-    <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="GeneralController.cs" />
     <Compile Include="Interface\IGenericKendoController.cs" />
     <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />

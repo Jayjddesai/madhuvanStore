@@ -1,18 +1,23 @@
-﻿using Madhuvan.Businesslayer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Madhuvan.Businesslayer.Controller
+namespace Madhuvan.Businesslayer
 {
-    public class AdminController : System.Web.Mvc.Controller
+    public class CategoryController : BaseController
     {
         public ActionResult Index()
         {
+
             return View();
+        }
+
+        public ActionResult Create()
+        {
+            return View(); 
         }
     }
 }

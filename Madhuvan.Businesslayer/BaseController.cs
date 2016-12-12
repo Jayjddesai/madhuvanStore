@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace Madhuvan.Businesslayer
 {
-    public class BaseController : System.Web.Mvc.Controller
+    public class BaseController : Controller
     {
         #region Overridden Methods
         /// <summary>
