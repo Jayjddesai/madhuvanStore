@@ -1,0 +1,328 @@
+﻿@using System.Collections
+@using Madhuvan.Commonlayer
+@using Madhuvan.Datalayer.DatabaseModel
+@using Madhuvan.Web
+@model Company
+
+@Html.HiddenFor(x => x.CompanyId)
+<table class="manageTable">
+    <tr>
+        <td>
+            @Html.Hidden("HiddenTestval")
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.CompanyName)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.CompanyName, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.CompanyName)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.CompanyShortName)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.CompanyShortName, new { @class = "k-textbox", @maxlength = 5 })
+                @Html.ValidationMessageFor(x => x.CompanyShortName)
+            </div>
+        </td>
+     
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.OwnerName)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.OwnerName, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.OwnerName)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Address)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Address, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.Address)
+            </div>
+        </td>
+       
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.PhoneNumber1)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.PhoneNumber1, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.PhoneNumber1)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.PhoneNumber2)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.PhoneNumber2, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.PhoneNumber2)
+            </div>
+        </td>
+      
+
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Email)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Email, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.Email)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.EstablishedDate)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().DatePickerFor(x => x.EstablishedDate).Max(DateTime.Now).Value(DateTime.Now))
+                @Html.ValidationMessageFor(x => x.EstablishedDate)
+            </div>
+        </td>
+      
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.PANNo)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.PANNo, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.PANNo)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.TDSNo)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.TDSNo, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.TDSNo)
+            </div>
+        </td>
+      
+
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.TDSCircle)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.TDSCircle, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.TDSCircle)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.CSTNo)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.CSTNo, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.CSTNo)
+            </div>
+        </td>
+       
+
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.SalesTaxNo)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.SalesTaxNo, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.SalesTaxNo)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.VATNo)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.VATNo, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.VATNo)
+            </div>
+        </td>
+       
+
+
+
+    </tr>
+    <tr>
+
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.City)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.CityId)
+                    .Name("CityId")
+                    .Placeholder(CommonHelper.PleaseSelect)
+                    .DataValueField("CityId")
+                    .DataTextField("Name")
+                         .Filter(FilterType.Contains).Suggest(true)
+                    .BindTo((IEnumerable)ViewBag.CityList)
+                    .HtmlAttributes(new { @data_value_primitive = "true" }))
+                @Html.ValidationMessageFor(x => x.CityId)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.TINNo)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.TINNo, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.TINNo)
+            </div>
+        </td>
+  
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.StateId)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.StateId)
+                    .Placeholder(CommonHelper.PleaseSelect)
+                    .Filter(FilterType.Contains).Suggest(true)
+                    .BindTo((IEnumerable)ViewBag.State)
+                    .DataValueField("StateId")
+                    .DataTextField("Name")
+                               .DataSource(source =>
+                        {
+                            source.Read(read =>
+                            {
+                                read.Action("BindStateByCityId", ControllerName.BindDropDown)
+                                .Data("filterState");
+                            })
+                            .ServerFiltering(true);
+                        })
+                                .AutoBind(true)
+                        .CascadeFrom("CityId")
+                          .Events(e => e.DataBound("boundstate"))
+                    .HtmlAttributes(new { @data_value_primitive = "true" }))
+
+
+
+
+
+
+                @Html.ValidationMessageFor(x => x.StateId)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.CountryId)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.CountryId)
+                    .Placeholder(CommonHelper.PleaseSelect)
+                    .Filter(FilterType.Contains).Suggest(true)
+                    .BindTo((IEnumerable)ViewBag.Country)
+                    .DataValueField("CountryId")
+                    .DataTextField("Name")
+                                   .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("BindCountryByCityId", ControllerName.BindDropDown)
+                                        .Data("filterCountry");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                                        .AutoBind(true)
+                                .CascadeFrom("CityId")
+                        //  .Events(e => e.DataBound("boundcountry"))
+                    .HtmlAttributes(new { @data_value_primitive = "true" }))
+                @Html.ValidationMessageFor(x => x.CountryId)
+            </div>
+        </td>
+        <td></td>
+
+    </tr>
+    <tr>
+        <td></td>
+    </tr>
+</table>
+<div class="col-lg-12">
+    <div class="col-lg-2" style="margin-left:10px;">
+        @Html.LabelFor(x => x.CompanyLogo)
+    </div>
+    <div class="col-lg-8" style="margin-left:-35px;">
+        @*@(Html.HiddenFor(x=>x.CompanyLogo))*@
+        @(Html.Kendo().Upload()
+                                                     .Name("files")
+                                                    .Multiple(false)
+                                                     .Events(e => e.Upload("onUpload"))
+                                                    .HtmlAttributes(new { @style = "width:500px", @class = "k-input  k-valid form-control" })
+                                                    .Async(a => a
+                                                    .Save("SaveAttachments", "Company")
+                                                    .Remove("RemoveAttachments", "Company")
+                                                    .AutoUpload(true))
+        )
+        @Html.ValidationMessageFor(x => x.CompanyLogo)
+        @*@{
+            if (Model.CompanyLogo != "" || Model.CompanyLogo != null)
+                <img src="@Model.CompanyLogo" height="150" width="150" class="img img-circle" />
+
+        }*@
+    
+    </div>
+</div>
+@* For displaying files on edit mode of payment intimation *@
+
+
+
+<div class="editor-field">
+    @(Html.Kendo().Grid<Madhuvan.Datalayer.DatabaseModel.Company>()
+                                                                 .Name("gridforDoc")
+                                                 .Columns(columns =>
+                                                    {
+                                                        columns.Bound(d => d.CompanyLogo).Title("Company Logo");
+                                                        columns.Bound(d => d.CreatedDate).Title("Created Date").Format("{0:" + CommonHelper.DateFormat + "}");
+                                                        columns.Command(command =>
+                                                       {
+                                                           command.Destroy().Text(" ");
+                                                           command.Custom("ReadDocument").Text("<span class='k-icon k-i-search'></span>").Click("ViewDocument");
+
+                                                       })
+                                             .Title("Action")
+                                             .HtmlAttributes(Madhuvan.Web.CommonSettings.ActionCenterColumnStyleWithCanEdit).HeaderHtmlAttributes(Madhuvan.Web.CommonSettings.ActionCenterColumnStyleWithCanEdit);
+                                                    })
+                                              .NoRecords()
+                                              .AutoBind(false)
+                                              .DataSource(dataSource => dataSource
+                                           .Ajax()
+                                           .Model(model => model.Id(d => d.CompanyId))
+                                           .Events(events => events.Error("onError(\"gridforDoc\")"))
+                      .Read(read => read.Action("DocumentRead", ControllerName.Company).Data("additionalData"))
+                      .Destroy(update => update.Action("DocumentDelete", ControllerName.Company))
+                                       ))
+
+</div>
+<style>
+    html .k-upload {
+    width: 640px;
+}
+</style>
+<script>
+
+
+</script>

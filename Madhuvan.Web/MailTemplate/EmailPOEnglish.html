@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <style type="text/css">
+        body {
+            margin: 0 0 40px 0;
+            padding: 0;
+            font-family: Verdana;
+            font-size: 12px;
+            color: #000;
+        }
+
+        .nrmfont {
+            font-size: 13px;
+            color: #00508a;
+        }
+
+        .padmain {
+            padding-top: 20px;
+            padding-left: 50px;
+            padding-right: 10px;
+        }
+
+        .headerfont {
+            color: #0b467e;
+            font-weight: bold;
+            font-size: 19px;
+        }
+
+
+        .smallfont {
+            font-size: 11px;
+            color: #000;
+        }
+
+        .padtop {
+            padding-top: 20px;
+        }
+
+        .padmain2 {
+            padding-top: 0px;
+            padding-left: 50px;
+            padding-right: 10px;
+        }
+
+        .lbl {
+            width: 130px;
+            font-weight: 600;
+        }
+
+        #footer {
+            background: #d9dfe3;
+            color: #314b65;
+            padding: 12px 0px 12px 0px;
+            text-align: center;
+            font-size: 12px;
+            width: 100%;
+        }
+
+            #footer a {
+                color: #314b65;
+            }
+
+
+        .gridheaderbg {
+            background-color: #0b93ce;
+            color: #fff;
+            padding: 0px 5px;
+        }
+
+        .TextBold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div style="text-align: center">
+
+        <h1>Shree Shipping Services</h1>
+        <h4>Mundra, Gujarat</h4>
+
+    </div>
+    <div>
+        <div style="display: table; width: 40%; float: left">
+            <table cellspacing='2' cellpadding='2' border='0' style='font-family: Verdana, sans-serif; font-size: 12px; text-decoration: none;'>
+
+                <tr>
+                    <td>PurchaseOrderID:</td>
+                    <td>##PurchaseOrderID##</td>
+                </tr>
+                <tr>
+                    <td>Sequence Number:</td>
+                    <td>##SequenceNumber##</td>
+                </tr>
+                <tr>
+                    <td>Reference Number:</td>
+                    <td>##RefNo##</td>
+                </tr>
+
+                <tr>
+                    <td>Supplier:</td>
+                    <td>##supllier##</td>
+                </tr>
+                <tr>
+                    <td>Expected Delivery Date:</td>
+                    <td>##ExpectedDeliveryDate##</td>
+                </tr>
+                <tr>
+                    <td>Is Cancelled:</td>
+                    <td>##Iscancalled##</td>
+                </tr>
+            </table>
+        </div>
+        <div style="display: table; width: 50%">
+            <table cellspacing='2' cellpadding='2' border='0' style='font-family: Verdana, sans-serif; font-size: 12px; text-decoration: none;'>
+
+                <tr>
+                    <td>Warehouse:</td>
+                    <td>##warehouse##</td>
+                </tr>
+                <tr>
+                    <td>Order Date:</td>
+                    <td>##purchaseDate##</td>
+                </tr>
+                <tr>
+                    <td>Payment Date:</td>
+                    <td>##paymentData##</td>
+                </tr>
+                <tr>
+                    <td>Status:</td>
+                    <td>##status##</td>
+                </tr>
+                <tr>
+                    <td>IsReceived:</td>
+                    <td>##IsReceived##</td>
+                </tr>
+                <tr>
+                    <td>IsPaid:</td>
+                    <td>##IsPaid##</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <!--<table cellspacing='5' cellpadding='5' border='1' style='font-family: Verdana, sans-serif; font-size: 12px;>
+        ##PurchaseItems##
+    </table>-->
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    &nbsp;
+    <h4>Purchased Items Detail</h4>
+    <div style="text-align: initial">
+        ##PurchaseItems##
+
+        
+        <div style="float:right; padding-right:20px">
+            <h6>Item Amount:##ItemAmount##<br /></h6>
+            <h6>Tax Amount:##TaxAmount## Rs.<br /></h6>
+            <h6>Other Charges:##othercharges## Rs.<br /></h6>
+            <h6>Total Amount:##totalAmount## Rs.<br /></h6>
+        </div>
+    </div>
+
+
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+﻿@using System.Collections
+@using Madhuvan.Commonlayer
+@model Madhuvan.Datalayer.DatabaseModel.Item
+
+<table class="manageTable">
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Name)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Name, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.Name)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.CategoryId)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.CategoryId).Placeholder(CommonHelper.PleaseSelect).Filter(FilterType.Contains)
+                .BindTo((IEnumerable)ViewBag.CategoryList).DataValueField("CategoryId").DataTextField("Name").HtmlAttributes(new { @data_value_primitive = "true" }))
+                @Html.ValidationMessageFor(x => x.CategoryId)
+            </div>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Code)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Code, new { @class = "k-textbox" })
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Description)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Description, new { @class = "k-textbox" })
+            </div>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.UnitTypeId)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.UnitTypeId).Placeholder(CommonHelper.PleaseSelect).Filter(FilterType.Contains).Suggest(true)
+                .BindTo((IEnumerable)ViewBag.UnitTypeList).DataValueField("UnitTypeId").DataTextField("Type").HtmlAttributes(new { @data_value_primitive = "true" }))
+                @Html.ValidationMessageFor(x => x.UnitTypeId)
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.ManufactureId)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.ManufactureId).Placeholder(CommonHelper.PleaseSelect).Filter(FilterType.Contains).Suggest(true)
+                .BindTo((IEnumerable)ViewBag.ManufactureList).DataValueField("ManufactureId").DataTextField("Name").HtmlAttributes(new { @data_value_primitive = "true" }))
+                @Html.ValidationMessageFor(x => x.ManufactureId)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.MaintainancePlanId)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.MaintainancePlanId).Placeholder(CommonHelper.PleaseSelect).Filter(FilterType.Contains).Suggest(true)
+                .BindTo((IEnumerable)ViewBag.MaintainancePlanList).DataValueField("MaintainancePlanId").DataTextField("PlanName").HtmlAttributes(new { @data_value_primitive = "true" }))
+            </div>
+        </td>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.IsPlanApplied)
+            </div>
+            <div class="k-edit-field">
+                @Html.EditorFor(x => x.IsPlanApplied)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Active)
+            </div>
+            <div class="k-edit-field">
+                @Html.EditorFor(x => x.Active)
+            </div>
+        </td>
+        <td></td>
+    </tr>
+</table>

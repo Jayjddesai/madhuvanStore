@@ -1,0 +1,86 @@
+﻿@using System.Collections
+@using Madhuvan.Commonlayer
+@using Madhuvan.Datalayer.DatabaseModel
+@using Madhuvan.Web
+@model ItemIssueDetails
+
+
+<table class="manageTable">
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(x => x.ItemId)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().ComboBoxFor(m => m.ItemId).Placeholder(CommonHelper.PleaseSelect).Filter(FilterType.Contains).Suggest(true)
+                .BindTo((IEnumerable)ViewBag.ItemList).DataValueField("ItemId").DataTextField("Name")
+                .Events(e => e.Change("onChange")))
+                @Html.ValidationMessageFor(x => x.ItemId)
+            </div>
+        </td>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(x => x.Itemcode)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().ComboBox()
+                      .Name("Itemcode")
+                      .DataTextField("Name")
+                                      .DataValueField("Name")
+                      .DataSource(source => source.Read(read => read.Action("BindItemCodes", ControllerName.ItemIssue).Data("Data")))
+                      .Suggest(true)
+                      .AutoBind(false)
+                      .Enable(false)
+                      .Filter(FilterType.Contains).HtmlAttributes(new { @data_value_primitive = "true", @id = "Itemcode" })
+                      .Placeholder(CommonHelper.PleaseSelect))
+                @Html.ValidationMessageFor(x => x.Itemcode)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="editor-label">
+                @Html.LabelFor(x => x.Quantity)
+            </div>
+            <div class="editor-field">
+                @(Html.Kendo().NumericTextBoxFor(x => x.Quantity).Spinners(false))
+                @Html.ValidationMessageFor(x => x.Quantity)
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            @(Html.Kendo().Grid<getIssuedItems_Result>()
+                                       .Name("gridItems")
+                                       .Columns(columns =>
+                                       {
+                                           columns.Command(command => command.Custom("Scrap").Text(" ").Click("scrapItem").Text(" "))
+                                               .Title("Action")
+                                               .HtmlAttributes(CommonSettings.ActionCenterColumnStyleWithCanEdit).HeaderHtmlAttributes(CommonSettings.ActionCenterColumnStyleWithCanEdit);
+                                           columns.Bound(d => d.IssueNr);
+                                           columns.Bound(d => d.ItemCode);
+                                           columns.Bound(d => d.Quantity);
+                                           columns.Bound(d => d.CurrentKm).Title("Used Life(in Km)");
+                                           columns.Bound(d => d.DaysDuration).Title("Capacity (in Days)");
+                                           columns.Bound(d => d.LifeKM).Title("Capacity (in KM)");
+                                       })
+                                       .NoRecords()
+                                       .AutoBind(false)
+                                       .Events(events => events.DataBound("dataBoundScrap"))
+                                       .DataSource(dataSource => dataSource
+                                       .Ajax()
+                                       .Model(model => model.Id(d => d.ItemIssueDetailsId))
+                                       .Events(events => events.Error("onError(\"gridItems\")"))
+                                       .Read(read => read.Action("IssueItemRead", ControllerName.ItemIssue).Data("onAdditionalData"))
+                                       ))
+        </td>
+    </tr>
+</table>
+
+<style>
+   
+.k-edit-form-container {
+    width: 800px !important;
+    margin-left: 40px;
+}
+</style>

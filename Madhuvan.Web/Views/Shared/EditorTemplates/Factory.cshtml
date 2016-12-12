@@ -1,0 +1,196 @@
+﻿@using System.Collections
+@using Madhuvan.Commonlayer
+@using Madhuvan.Datalayer.DatabaseModel
+@using Madhuvan.Web
+@model Factory
+
+
+<table class="manageTable">
+   
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.FactoryName)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.FactoryName, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.FactoryName)
+            </div>
+        </td>
+     
+    </tr>
+
+    @*<tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.PartyId)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.PartyId)
+                .Placeholder(CommonHelper.PleaseSelect)
+                .Filter(FilterType.Contains).Suggest(true)
+                        .BindTo((IEnumerable)ViewBag.PartyList)
+                .DataValueField("PartyId")
+                        .DataTextField("PartyName")
+                .HtmlAttributes(new { @data_value_primitive = "true" }))
+
+                @Html.ValidationMessageFor(x => x.PartyId)
+            </div>
+        </td>
+
+    </tr>*@
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Address1)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextAreaFor(x => x.Address1, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.Address1)
+            </div>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Address2)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextAreaFor(x => x.Address2, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.Address2)
+            </div>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Taluka)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Taluka, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.Taluka)
+            </div>
+        </td>
+      
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.District)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.District, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.District)
+            </div>
+        </td>
+      
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.DistanceFromMainStation)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.DistanceFromMainStation, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.DistanceFromMainStation)
+            </div>
+        </td>
+
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.StateId)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.StateId)
+                .Placeholder(CommonHelper.PleaseSelect)
+                .Filter(FilterType.Contains).Suggest(true)
+                .BindTo((IEnumerable)ViewBag.StateList)
+                .DataValueField("StateId")
+                .DataTextField("Name")
+                .HtmlAttributes(new { @data_value_primitive = "true" }))
+                @Html.ValidationMessageFor(x => x.StateId)
+            </div>
+        </td>
+      
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.CountryId)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.CountryId)
+                    .Placeholder(CommonHelper.PleaseSelect)
+                    .Filter(FilterType.Contains).Suggest(true)
+                    .BindTo((IEnumerable)ViewBag.CountryList)
+                    .DataValueField("CountryId")
+                    .DataTextField("Name")
+                                   .DataSource(source =>
+                                {
+                                    source.Read(read =>
+                                    {
+                                        read.Action("BindCountryByStateId", ControllerName.BindDropDown)
+                                        .Data("filterCountry");
+                                    })
+                                    .ServerFiltering(true);
+                                })
+                                        .AutoBind(true)
+                                .CascadeFrom("StateId")
+                                                      .Events(e => e.DataBound("boundcountry"))
+
+                    .HtmlAttributes(new { @data_value_primitive = "true" }))
+                   @Html.ValidationMessageFor(x => x.CountryId)
+            </div>
+        </td>
+
+      
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.ContactPersonName)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.ContactPersonName, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.ContactPersonName)
+            </div>
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.ContactNo)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.ContactNo, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.ContactNo)
+            </div>
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Active)
+            </div>
+            <div class="k-edit-field">
+                @Html.EditorFor(x => x.Active)
+            </div>
+        </td>
+     
+
+
+    </tr>
+  
+</table>

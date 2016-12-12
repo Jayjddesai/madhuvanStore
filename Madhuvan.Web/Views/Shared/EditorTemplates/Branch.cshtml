@@ -1,0 +1,101 @@
+﻿@using System.Collections
+@using Madhuvan.Commonlayer
+@using Madhuvan.Datalayer.DatabaseModel
+@using Madhuvan.Web
+@model Branch
+
+
+<table class="manageTable" style="overflow:hidden;">
+
+
+    <tr>
+        <td>
+
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.Name)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.Name, new { @class = "k-textbox" })
+                @Html.ValidationMessageFor(x => x.Name)
+            </div>
+        </td>
+
+
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.ShortName)
+            </div>
+            <div class="k-edit-field">
+                @Html.TextBoxFor(x => x.ShortName, new { @class = "k-textbox", @maxlength = 5 })
+                @Html.ValidationMessageFor(x => x.ShortName)
+            </div>
+        </td>
+
+
+    </tr>
+
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.IdCompany)
+            </div>
+            <div class="k-edit-field">
+                @(Html.Kendo().ComboBoxFor(m => m.IdCompany)
+                            .Name("IdCompany")
+                    .Placeholder(CommonHelper.PleaseSelect)
+                                    .DataValueField("CompanyId")
+                    .DataTextField("CompanyName")
+                         .Filter(FilterType.Contains).Suggest(true)
+                            .BindTo((IEnumerable)ViewBag.CompanyList)
+
+                    .HtmlAttributes(new { @data_value_primitive = "true" }))
+                @Html.ValidationMessageFor(x => x.IdCompany)
+            </div>
+        </td>
+
+    </tr>
+    <tr>
+        <td>
+            <div class="k-edit-label">
+                @Html.LabelFor(x => x.IsActive)
+            </div>
+            <div class="k-edit-field">
+                @Html.CheckBoxFor(x => x.IsActive)
+            </div>
+        </td>
+
+    </tr>
+    <tr>
+        <td id="branchsetting">
+            <label style="background-color:#dbdbdb;color:red;text-align:center;padding:10px;width:100%">Please Select Branch To Copy All Setting of Selected Branch To New Branch.</label>
+            <div class="k-edit-label">
+                Branch
+            </div>
+            <div class="k-edit-field">
+                @Html.CheckBoxFor(x => x.IsCopy, new { @style = "margin-left:-13px;" })
+                @(Html.Kendo().ComboBoxFor(m => m.BranchIdForSettings)
+                                            .Name("BranchIdForSettings")
+                    .Placeholder(CommonHelper.PleaseSelect)
+                                            .DataValueField("BranchId")
+                    .DataTextField("Name")
+                         .Filter(FilterType.Contains).Suggest(true)
+                            .BindTo((IEnumerable)ViewBag.BranchList)
+
+                            .HtmlAttributes(new { @data_value_primitive = "true", @style = "width:100px;" }))
+                @*@Html.ValidationMessageFor(x => x.BranchIdForSettings)*@
+            </div>
+        </td>
+
+    </tr>
+
+</table>
+
+
+<script>
+
+
+
+</script>

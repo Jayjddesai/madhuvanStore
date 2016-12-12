@@ -1,0 +1,16 @@
+﻿@using Kendo.Mvc.UI
+@using Madhuvan.Commonlayer
+
+@model object
+
+@(Html.Kendo().ComboBoxFor(m=>m)
+                  .Name("InvoiceNo")
+                  .DataTextField("InvoiceNo")
+                  .DataValueField("InvoiceId")
+                  .DataSource(source => source.Read(read => read.Action("BindInvoiceNoForPI", ControllerName.BindDropDown).Data("getconsignementsId")))
+                  .Suggest(true)
+                  .Filter(FilterType.Contains).HtmlAttributes(new { @style = "width:245px !important", @data_value_primitive = "true" })
+                  .Placeholder(CommonHelper.PleaseSelect)
+                  .Events(x => x.Select("onInvoiceSelect"))
+              )
+              

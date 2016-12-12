@@ -1,0 +1,10 @@
+﻿@using Madhuvan.Commonlayer
+@model string
+
+@(Html.Kendo().AutoCompleteFor(m => m).MinLength(3)
+      .DataTextField("JobNumber")
+          .Filter(FilterType.StartsWith)
+          .Suggest(true)
+      .DataSource(source => source.Read(read => read.Action("BindJobNumber", ControllerName.Job).Data("jobinfo"))
+      .ServerFiltering(true))
+)
