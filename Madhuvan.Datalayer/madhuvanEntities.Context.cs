@@ -25,7 +25,6 @@ namespace Madhuvan.Datalayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<AdminUserMaster> AdminUserMasters { get; set; }
         public virtual DbSet<CategoryMaster> CategoryMasters { get; set; }
         public virtual DbSet<CustomerMaster> CustomerMasters { get; set; }
         public virtual DbSet<OfferMaster> OfferMasters { get; set; }
@@ -34,5 +33,7 @@ namespace Madhuvan.Datalayer
         public virtual DbSet<ProductMaster> ProductMasters { get; set; }
         public virtual DbSet<ProductSliderImage> ProductSliderImages { get; set; }
         public virtual DbSet<SubCategoryMaster> SubCategoryMasters { get; set; }
+        public virtual DbSet<AdminUserMaster> AdminUserMasters { get; set; }
+        public virtual DbSet<UserType> UserTypes { get; set; }
     }
 }

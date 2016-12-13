@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MadhuvanMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MadhuvanMVCModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="AdminUserMaster">
           <Key>
             <PropertyRef Name="AdminUserId" />
@@ -14,6 +14,7 @@
           <Property Name="LastName" Type="varchar" MaxLength="20" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" />
         </EntityType>
         <EntityType Name="CategoryMaster">
           <Key>
@@ -89,6 +90,25 @@
           <Property Name="SubCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="SubCategoryImage" Type="varbinary" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsertypeName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_AdminUserMaster_UserType">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+          <End Role="AdminUserMaster" Type="Self.AdminUserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdminUserMaster">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Order_CustomerMaster">
           <End Role="CustomerMaster" Type="Self.CustomerMaster" Multiplicity="1" />
           <End Role="Order" Type="Self.Order" Multiplicity="*" />
@@ -159,6 +179,11 @@
           <EntitySet Name="ProductMaster" EntityType="Self.ProductMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSliderImage" EntityType="Self.ProductSliderImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SubCategoryMaster" EntityType="Self.SubCategoryMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AdminUserMaster_UserType" Association="Self.FK_AdminUserMaster_UserType">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="AdminUserMaster" EntitySet="AdminUserMaster" />
+          </AssociationSet>
           <AssociationSet Name="FK_Order_CustomerMaster" Association="Self.FK_Order_CustomerMaster">
             <End Role="CustomerMaster" EntitySet="CustomerMaster" />
             <End Role="Order" EntitySet="Order" />
@@ -180,21 +205,10 @@
             <End Role="SubCategoryMaster" EntitySet="SubCategoryMaster" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MadhuvanMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="AdminUserMaster">
-          <Key>
-            <PropertyRef Name="AdminUserId" />
-          </Key>
-          <Property Name="AdminUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="CategoryMaster">
           <Key>
             <PropertyRef Name="CategoryId" />
@@ -340,7 +354,6 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="MadhuvanMVCEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="AdminUserMasters" EntityType="Self.AdminUserMaster" />
           <EntitySet Name="CategoryMasters" EntityType="Self.CategoryMaster" />
           <EntitySet Name="CustomerMasters" EntityType="Self.CustomerMaster" />
           <EntitySet Name="OfferMasters" EntityType="Self.OfferMaster" />
@@ -369,24 +382,51 @@
             <End Role="ProductMaster" EntitySet="ProductMasters" />
             <End Role="ProductSliderImage" EntitySet="ProductSliderImages" />
           </AssociationSet>
+          <EntitySet Name="AdminUserMasters" EntityType="MadhuvanMVCModel.AdminUserMaster" />
+          <EntitySet Name="UserTypes" EntityType="MadhuvanMVCModel.UserType" />
+          <AssociationSet Name="FK_AdminUserMaster_UserType" Association="MadhuvanMVCModel.FK_AdminUserMaster_UserType">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="AdminUserMaster" EntitySet="AdminUserMasters" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AdminUserMaster">
+          <Key>
+            <PropertyRef Name="AdminUserId" />
+          </Key>
+          <Property Name="AdminUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserTypeId" Type="Int32" />
+          <NavigationProperty Name="UserType" Relationship="MadhuvanMVCModel.FK_AdminUserMaster_UserType" FromRole="AdminUserMaster" ToRole="UserType" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsertypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AdminUserMasters" Relationship="MadhuvanMVCModel.FK_AdminUserMaster_UserType" FromRole="UserType" ToRole="AdminUserMaster" />
+        </EntityType>
+        <Association Name="FK_AdminUserMaster_UserType">
+          <End Type="MadhuvanMVCModel.UserType" Role="UserType" Multiplicity="0..1" />
+          <End Type="MadhuvanMVCModel.AdminUserMaster" Role="AdminUserMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdminUserMaster">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MadhuvanMVCModelStoreContainer" CdmEntityContainer="MadhuvanMVCEntities">
-          <EntitySetMapping Name="AdminUserMasters">
-            <EntityTypeMapping TypeName="MadhuvanMVCModel.AdminUserMaster">
-              <MappingFragment StoreEntitySet="AdminUserMaster">
-                <ScalarProperty Name="AdminUserId" ColumnName="AdminUserId" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CategoryMasters">
             <EntityTypeMapping TypeName="MadhuvanMVCModel.CategoryMaster">
               <MappingFragment StoreEntitySet="CategoryMaster">
@@ -466,6 +506,26 @@
                 <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
                 <ScalarProperty Name="SubCategoryImage" ColumnName="SubCategoryImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminUserMasters">
+            <EntityTypeMapping TypeName="MadhuvanMVCModel.AdminUserMaster">
+              <MappingFragment StoreEntitySet="AdminUserMaster">
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="AdminUserId" ColumnName="AdminUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="MadhuvanMVCModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="UsertypeName" ColumnName="UsertypeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

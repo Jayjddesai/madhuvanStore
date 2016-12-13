@@ -58,6 +58,7 @@
     <Compile Include="AdminUserMaster.cs">
       <DependentUpon>madhuvanEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="BaseContext.cs" />
     <Compile Include="CategoryMaster.cs">
       <DependentUpon>madhuvanEntities.tt</DependentUpon>
     </Compile>
@@ -95,7 +96,11 @@
       <DependentUpon>madhuvanEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="SubCategoryMaster.cs">
+      <DependentUpon>madhuvanEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserType.cs">
       <DependentUpon>madhuvanEntities.tt</DependentUpon>
     </Compile>
   </ItemGroup>

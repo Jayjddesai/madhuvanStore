@@ -63,6 +63,7 @@
     <Compile Include="Common\SettingConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="GeneralController.cs" />
     <Compile Include="Interface\IGenericKendoController.cs" />

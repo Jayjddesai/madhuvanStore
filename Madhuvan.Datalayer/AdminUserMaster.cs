@@ -19,5 +19,8 @@ namespace Madhuvan.Datalayer
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public Nullable<int> UserTypeId { get; set; }
+    
+        public virtual UserType UserType { get; set; }
     }
 }
