@@ -1,7 +1,61 @@
-﻿
-@{
-    ViewBag.Title = "Create";
-}
+﻿@using Madhuvan.Web
+@using System.Collections;
+@using Madhuvan.Web.Class
+@using Madhuvan.Resourcelayer
+@model Madhuvan.Datalayer.CategoryMaster
 
-<h2>Create</h2>
+<div id="breadcrumbs">
+    <ul class="breadcrumb">
+        <li>
+            <i class="fa fa-home"></i>
+            <a href="@Url.Action("Index", "Home")">Home</a>
+            <span class="divider"><i class="fa fa-angle-right"></i></span>
+        </li>
+        <li class="active">Add New Category</li>
+    </ul>
+</div>
 
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <i class="fa fa-list-alt"></i>
+            Add New Category
+        </h3>
+    </div>
+
+    @using (Html.BeginForm("SaveCategory", "Category", FormMethod.Post, new { @id = "defaultForm" }))
+    {
+        @Html.HiddenFor(model => model.CategoryId)
+        <div class="row">
+            <br />
+           
+
+            <div class="col-sm-12">
+                <div class="form-group" style="margin-left: 10px;">
+                    <label class="col-sm-2 control-label" style="padding-bottom: 15px">@Label.GoogleDistance</label>
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(m => m.CategoryName, new { @style = "width: 238px !important;", @class = "form-control"})
+                        <input type="button" id="btnget" class="btn btn-default form-control" value="Get" onclick="GetDistance()" style="width: 50px" />
+                    </div>
+                </div>
+            </div>
+
+           
+
+            <div class="col-md-12">
+                <div class="form-group" style="margin-left: 10px;">
+                    <div class="col-sm-2 control-label" style="padding-bottom: 15px">&nbsp;</div>
+                    <div class="col-sm-10">
+                        <input type="submit" id="btnSave" class="btn btn-default form-control" value="Save" style="width: 100px" />
+                        @Html.ActionLink("Back", "Index", "Category", null, new { @class = "btn btn-default form-control", @style = "width:100px; height:34px;", title = "Back", id = "BtnPartialCancel" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+   
+
+</script>

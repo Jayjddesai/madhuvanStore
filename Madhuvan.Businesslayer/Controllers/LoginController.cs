@@ -12,6 +12,7 @@ namespace Madhuvan.Businesslayer
 {
     public class LoginController : Controller
     {
+       
         readonly GenericRepository<AdminUserMaster> _repository = new GenericRepository<AdminUserMaster>();
 
         public ActionResult Index()

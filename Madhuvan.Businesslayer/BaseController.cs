@@ -33,7 +33,8 @@ namespace Madhuvan.Businesslayer
         {
             base.OnActionExecuting(filterContext);
 
-            if (Request.IsAuthenticated)
+           // if (Request.IsAuthenticated)
+           if(true)
             {
 
                 
