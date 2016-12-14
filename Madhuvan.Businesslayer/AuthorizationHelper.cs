@@ -21,7 +21,6 @@ namespace Madhuvan.Businesslayer
                 filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() == "login" ||
                 filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() == "general" ||
                 filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() == "PaymentAfterIntimation" ||
-                filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() == "category" ||
                 filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.ToLower() == "binddropdown") return true;
 
             if (

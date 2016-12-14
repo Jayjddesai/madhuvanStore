@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MadhuvanMVCModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CategoryMaster">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CategoryImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="SubCategoryMasters" Relationship="Self.FK_SubCategoryMaster_CategoryMaster" FromRole="CategoryMaster" ToRole="SubCategoryMaster" />
+  </EntityType>
+  <EntityType Name="CustomerMaster">
+    <Key>
+      <PropertyRef Name="CustomerId" />
+    </Key>
+    <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Taluka" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShopName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Orders" Relationship="Self.FK_Order_CustomerMaster" FromRole="CustomerMaster" ToRole="Order" />
+  </EntityType>
+  <EntityType Name="OfferMaster">
+    <Key>
+      <PropertyRef Name="OfferId" />
+    </Key>
+    <Property Name="OfferId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OfferImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerId" Type="Int32" Nullable="false" />
+    <Property Name="TotalAmount" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="CustomerMaster" Relationship="Self.FK_Order_CustomerMaster" FromRole="Order" ToRole="CustomerMaster" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_Order" FromRole="Order" ToRole="OrderDetail" />
+  </EntityType>
+  <EntityType Name="OrderDetail">
+    <Key>
+      <PropertyRef Name="OrderDetailId" />
+    </Key>
+    <Property Name="OrderDetailId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrderDetail_Order" FromRole="OrderDetail" ToRole="Order" />
+    <NavigationProperty Name="ProductMaster" Relationship="Self.FK_OrderDetail_ProductMaster" FromRole="OrderDetail" ToRole="ProductMaster" />
+  </EntityType>
+  <EntityType Name="ProductMaster">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubCategoryId" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProductPrice" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="ProductImage" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="OrderDetails" Relationship="Self.FK_OrderDetail_ProductMaster" FromRole="ProductMaster" ToRole="OrderDetail" />
+    <NavigationProperty Name="ProductSliderImages" Relationship="Self.FK_ProductSliderImage_ProductMaster" FromRole="ProductMaster" ToRole="ProductSliderImage" />
+  </EntityType>
+  <EntityType Name="ProductSliderImage">
+    <Key>
+      <PropertyRef Name="ProductSliderImageId" />
+    </Key>
+    <Property Name="ProductSliderImageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" Nullable="false" />
+    <Property Name="ProductSliderImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="ProductMaster" Relationship="Self.FK_ProductSliderImage_ProductMaster" FromRole="ProductSliderImage" ToRole="ProductMaster" />
+  </EntityType>
+  <EntityType Name="SubCategoryMaster">
+    <Key>
+      <PropertyRef Name="SubCategoryId" />
+    </Key>
+    <Property Name="SubCategoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryId" Type="Int32" Nullable="false" />
+    <Property Name="SubCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="SubCategoryImage" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="CategoryMaster" Relationship="Self.FK_SubCategoryMaster_CategoryMaster" FromRole="SubCategoryMaster" ToRole="CategoryMaster" />
+  </EntityType>
+  <Association Name="FK_SubCategoryMaster_CategoryMaster">
+    <End Role="CategoryMaster" Type="Self.CategoryMaster" Multiplicity="1" />
+    <End Role="SubCategoryMaster" Type="Self.SubCategoryMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryMaster">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="SubCategoryMaster">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_CustomerMaster">
+    <End Role="CustomerMaster" Type="Self.CustomerMaster" Multiplicity="1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CustomerMaster">
+        <PropertyRef Name="CustomerId" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="CustomerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="OrderId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="OrderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderDetail_ProductMaster">
+    <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="1" />
+    <End Role="OrderDetail" Type="Self.OrderDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductMaster">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="OrderDetail">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductSliderImage_ProductMaster">
+    <End Role="ProductMaster" Type="Self.ProductMaster" Multiplicity="1" />
+    <End Role="ProductSliderImage" Type="Self.ProductSliderImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductMaster">
+        <PropertyRef Name="ProductId" />
+      </Principal>
+      <Dependent Role="ProductSliderImage">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MadhuvanMVCEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CategoryMasters" EntityType="Self.CategoryMaster" />
+    <EntitySet Name="CustomerMasters" EntityType="Self.CustomerMaster" />
+    <EntitySet Name="OfferMasters" EntityType="Self.OfferMaster" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
+    <EntitySet Name="ProductMasters" EntityType="Self.ProductMaster" />
+    <EntitySet Name="ProductSliderImages" EntityType="Self.ProductSliderImage" />
+    <EntitySet Name="SubCategoryMasters" EntityType="Self.SubCategoryMaster" />
+    <AssociationSet Name="FK_SubCategoryMaster_CategoryMaster" Association="Self.FK_SubCategoryMaster_CategoryMaster">
+      <End Role="CategoryMaster" EntitySet="CategoryMasters" />
+      <End Role="SubCategoryMaster" EntitySet="SubCategoryMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_CustomerMaster" Association="Self.FK_Order_CustomerMaster">
+      <End Role="CustomerMaster" EntitySet="CustomerMasters" />
+      <End Role="Order" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_Order" Association="Self.FK_OrderDetail_Order">
+      <End Role="Order" EntitySet="Orders" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderDetail_ProductMaster" Association="Self.FK_OrderDetail_ProductMaster">
+      <End Role="ProductMaster" EntitySet="ProductMasters" />
+      <End Role="OrderDetail" EntitySet="OrderDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductSliderImage_ProductMaster" Association="Self.FK_ProductSliderImage_ProductMaster">
+      <End Role="ProductMaster" EntitySet="ProductMasters" />
+      <End Role="ProductSliderImage" EntitySet="ProductSliderImages" />
+    </AssociationSet>
+    <EntitySet Name="AdminUserMasters" EntityType="MadhuvanMVCModel.AdminUserMaster" />
+    <EntitySet Name="UserTypes" EntityType="MadhuvanMVCModel.UserType" />
+    <AssociationSet Name="FK_AdminUserMaster_UserType" Association="MadhuvanMVCModel.FK_AdminUserMaster_UserType">
+      <End Role="UserType" EntitySet="UserTypes" />
+      <End Role="AdminUserMaster" EntitySet="AdminUserMasters" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AdminUserMaster">
+    <Key>
+      <PropertyRef Name="AdminUserId" />
+    </Key>
+    <Property Name="AdminUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="UserTypeId" Type="Int32" />
+    <NavigationProperty Name="UserType" Relationship="MadhuvanMVCModel.FK_AdminUserMaster_UserType" FromRole="AdminUserMaster" ToRole="UserType" />
+  </EntityType>
+  <EntityType Name="UserType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UsertypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AdminUserMasters" Relationship="MadhuvanMVCModel.FK_AdminUserMaster_UserType" FromRole="UserType" ToRole="AdminUserMaster" />
+  </EntityType>
+  <Association Name="FK_AdminUserMaster_UserType">
+    <End Type="MadhuvanMVCModel.UserType" Role="UserType" Multiplicity="0..1" />
+    <End Type="MadhuvanMVCModel.AdminUserMaster" Role="AdminUserMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AdminUserMaster">
+        <PropertyRef Name="UserTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

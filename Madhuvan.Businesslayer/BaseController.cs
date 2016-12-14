@@ -8,7 +8,7 @@ using System.Web.Security;
 
 namespace Madhuvan.Businesslayer
 {
-    public class BaseController : Controller
+    public class BaseController : System.Web.Mvc.Controller
     {
         #region Overridden Methods
         /// <summary>
@@ -33,8 +33,7 @@ namespace Madhuvan.Businesslayer
         {
             base.OnActionExecuting(filterContext);
 
-           // if (Request.IsAuthenticated)
-           if(true)
+            if (Request.IsAuthenticated)
             {
 
                 

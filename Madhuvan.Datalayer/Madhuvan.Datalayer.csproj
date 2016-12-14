@@ -30,19 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Security" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
@@ -55,54 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminUserMaster.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BaseContext.cs" />
-    <Compile Include="CategoryMaster.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerMaster.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="madhuvanEntities.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>madhuvanEntities.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="madhuvanEntities.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="madhuvanEntities.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>madhuvanEntities.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="OfferMaster.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Order.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OrderDetail.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProductMaster.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProductSliderImage.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\GenericRepository.cs" />
-    <Compile Include="SubCategoryMaster.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserType.cs">
-      <DependentUpon>madhuvanEntities.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Madhuvan.Commonlayer\Madhuvan.Commonlayer.csproj">
@@ -113,34 +56,6 @@
       <Project>{29d28512-7c6e-4121-a3bb-33289b347cb5}</Project>
       <Name>Madhuvan.Resourcelayer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="madhuvanEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>madhuvanEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="madhuvanEntities.edmx.diagram">
-      <DependentUpon>madhuvanEntities.edmx</DependentUpon>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="madhuvanEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>madhuvanEntities.edmx</DependentUpon>
-      <LastGenOutput>madhuvanEntities.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="madhuvanEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>madhuvanEntities.edmx</DependentUpon>
-      <LastGenOutput>madhuvanEntities.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

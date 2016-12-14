@@ -6,8 +6,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Http.WebHost;
-using System.Web.Http;
 
 namespace Madhuvan.Web
 {
@@ -15,27 +13,10 @@ namespace Madhuvan.Web
     {
         protected void Application_Start()
         {
-
-
-            ViewEngines.Engines.Clear();
-            ViewEngines.Engines.Add(new RazorViewEngine());
-
+            AreaRegistration.RegisterAllAreas();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
-            ModelBinders.Binders.DefaultBinder = new TrimModelBinder();
-
-
-
-
-
-
-
-            ////AreaRegistration.RegisterAllAreas();
-            ////FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
-            ////RouteConfig.RegisterRoutes(RouteTable.Routes);
-            ////BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }
